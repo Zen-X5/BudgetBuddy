@@ -19,3 +19,7 @@ exports.getExpensesByUser = wrapAsync(async (req, res) => {
     const expenses = await Expense.find({ user: req.params.userId });
     res.json(expenses);
 });
+
+exports.getAddExpense = (req, res) => {
+    res.render("expenses/addExpense");
+};

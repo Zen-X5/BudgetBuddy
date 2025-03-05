@@ -1,0 +1,46 @@
+<% layout('layouts/boilerplate') -%>
+<div class="container mt-4">
+    <h2 class="mb-4">Add Expense</h2>
+    <form action="/expenses/add" method="POST" class="needs-validation" novalidate>
+        
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="title" id="title" class="form-control" placeholder="Expense Title" required>
+            <div class="invalid-feedback">Title is required.</div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="amount" class="form-label">Amount</label>
+            <input type="number" name="amount" id="amount" class="form-control" placeholder="Amount" required>
+            <div class="invalid-feedback">Amount is required.</div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select name="category" id="category" class="form-control" required>
+                <option value="">Select Category</option>
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Bills">Bills</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Other">Other</option>
+            </select>
+            <div class="invalid-feedback">Please select a category.</div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" name="date" id="date" class="form-control" required>
+            <div class="invalid-feedback">Date is required.</div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" id="description" class="form-control" rows="3" placeholder="Add a description..."></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Add Expense</button>
+    </form>
+</div>
+
+<script src="/js/formValidation.js"></script>

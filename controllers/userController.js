@@ -20,3 +20,11 @@ exports.getUserById = wrapAsync(async (req, res) => {
     if (!user) return res.status(404).send("User not found");
     res.json(user);
 });
+
+exports.getRegister = (req, res) => {
+    res.render("users/register");
+};
+
+exports.getLogin = (req, res) => {
+    res.render('users/login');
+};
