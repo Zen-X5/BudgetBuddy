@@ -1,0 +1,104 @@
+<% layout('/layouts/boilerplate') -%>
+<% if (success_msg && success_msg.length) { %>
+    <div class="alert alert-success alert-dismissible fade show col-md-6 offset-2" role="alert">
+        <%= success_msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<% if (error_msg && error_msg.length) { %>
+    <div class="alert alert-danger alert-dismissible fade show col-md-6 offset-2" role="alert">
+        <%= error_msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<div class="main">
+    <div class="budget">
+        <div class="credit-card">
+            <div class="bank-name">BANK NAME</div>
+            <div class="card-chip"></div>
+            <div class="card-number">1234 5678 0988 4321</div>
+            <div class="card-details">
+                <div>
+                    <p>Cardholder</p>
+                    <p><%= user ? user.username : "Guest" %></p> 
+                </div>
+                <div>
+                    <p>Expires</p>
+                    <p>12/26</p>
+                </div>
+            </div>
+            <div class="card-type">VISA</div>
+        </div>   
+        <br>
+        <div class="ultimateBalance">
+            <div class="total-balance-container">
+                <form action="/set-balance" method="POST">
+                    <label for="balance">Enter Total Balance:</label>
+                    <input type="number" id="balance" name="amount" required>
+                    <button type="submit" class="btn btn-primary">Set Balance</button>
+                </form>
+            </div>
+            
+            <!-- Display the current total balance -->
+            <div class="total-balance-display">
+                <h2>Total Balance: ₹<%= totalBalance ? totalBalance.amount : 0 %></h2>
+            </div>
+        </div>
+             
+    </div>
+    <div class="recents">
+        <!-- Show All Button -->
+        <button type="button" class="btn btn-dark showall" onclick="openAllExpensesModal()">Show All</button>
+
+        <!-- Expense Cards -->
+        <% for(let expense of allexpenses){ %>
+            <div class="card-body card" onclick="openExpenseModal('<%= expense.title %>', '<%= expense.amount %>', '<%= expense.date.toDateString() %>', '<%= expense.description %>')">
+                <blockquote class="blockquote mb-0">
+                    <div class="info">
+                        <p><%= expense.title %></p>
+                        <p><%= expense.amount %>rs</p>
+                    </div>
+                    <footer class="blockquote-footer">Date: <cite title="Source Title"><%= expense.date.toDateString() %></cite></footer>
+                </blockquote>
+                <form action="/delete-expense/<%= expense._id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-danger btn-sm delete-btn">Delete</button>
+                </form>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<!-- 🚀 Show All Expenses Modal -->
+<div id="allExpensesModal" class="custom-modal">
+    <div class="modal-content">
+        <span class="btn-close" onclick="closeAllExpensesModal()">&times;</span>
+        <h3>All Expenses</h3>
+        <div id="allExpensesList" class="modal-body"></div> 
+    </div>
+</div>
+
+<!-- 🚀 Expense Details Modal -->
+<div id="expenseModal" class="custom-modal">
+    <div class="modal-content">
+        <span class="btn-close" onclick="closeExpenseModal()">&times;</span>
+        <h3 id="modalTitle"></h3>
+        <p><strong>Amount:</strong> <span id="modalAmount"></span> rs</p>
+        <p><strong>Date:</strong> <span id="modalDate"></span></p>
+        <p><strong>Description:</strong> <span id="modalDescription"></span></p>
+    </div>
+</div>
+<div class="add">
+    <form action="/expenses/add" method="get">
+        <button class="btn btn-success add-expense-btn">➕ Add Expense</button>
+    </form>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+            new bootstrap.Alert(alert);
+        });
+    });
+</script>

@@ -1,0 +1,458 @@
+body {
+    background: linear-gradient(135deg, #121212, #1e1e1e);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh; /* Ensure full height */
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(8px);
+    z-index: -1;
+}
+.container {
+    padding: 20px;
+    border-radius: 10px;
+}
+.main{
+    display: flex;
+    justify-content: space-around;
+}
+.budget{
+    height: 10rem;
+    width: 30vh;
+    margin: 1rem;
+    background-color: rgba(255, 255, 255, 0.1)
+}
+.recents{
+    background-color: rgba(255, 255, 255, 0.048);
+    width:100vh;
+    height: 56vh;
+    border-radius:1rem ;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 3rem;
+}
+.card{
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    width: 40vh !important;
+    margin: 1rem;
+}
+.info{
+    display: flex;
+    justify-content: space-between;
+}
+.showall{
+    height: 5vh;
+    position: absolute;
+    bottom: 80vh;
+    left: 160vh;
+}
+/* Make modal same color as .recents */
+.custom-modal {
+    background-color:rgba(0, 0, 0, 0.438)!important; /* Same as .recents */
+    color: white !important;
+    border-radius: 1rem;
+    border: none;
+}
+
+/* Override Bootstrap modal-body styles to match .recents */
+.modal-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem;
+    height: 50vh; /* Same as .recents */
+    overflow-y: auto; /* Allow scrolling if needed */
+}
+
+/* Ensure cards inside modal have same styling */
+.modal-body .card {
+    width: 40vh !important;
+    margin: 1rem;
+    background-color:rgba(0, 0, 0, 0.384) !important;
+    color: white !important;
+}
+/* Make modal close button (X) white */
+.custom-modal .btn-close {
+    filter: invert(1); /* Turns black icons white */
+    opacity: 1; /* Make it fully visible */
+}
+/* General Modal Styles */
+.custom-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7); /* Blurred Background */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.123); /* Same as .recents */
+    padding: 20px;
+    border-radius: 10px;
+    width: 40vw;
+    text-align: center;
+}
+
+.modal-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Close Button */
+.btn-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white; /* White close button */
+}
+/* General Modal Styles */
+.custom-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    backdrop-filter: blur(20px); /* Super blur effect */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.123); /* Same as .recents */
+    padding: 20px;
+    border-radius: 10px;
+    width: 40vw;
+    text-align: center;
+    backdrop-filter: blur(10px); /* Slight blur inside modal */
+}
+
+/* Modal Body for Show All */
+.modal-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Close Button */
+.btn-close {
+    position: absolute;
+    top: 0px;
+    right: 3rem;
+    font-size: 24px;
+    cursor: pointer;
+    color: white; /* White close button */
+}
+.credit-card {
+    width: 320px;
+    height: 190px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #1e1e1e, #3d3d3d);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Card Chip */
+.card-chip {
+    width: 40px;
+    height: 30px;
+    background: gold;
+    border-radius: 5px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+/* Card Number */
+.card-number {
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Cardholder Name & Expiry */
+.card-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Bank Name */
+.bank-name {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+    opacity: 0.8;
+}
+
+/* Card Type (Visa, MasterCard, etc.) */
+.card-type {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    opacity: 0.8;
+}
+.balance-container {
+    background: linear-gradient(135deg, #1e1e1e, #3d3d3d);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    width: 320px;
+    text-align: center;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.balance-display {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+input[type="number"] {
+    width: 80%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.btn-primary {
+    margin-top: 10px;
+    background: #007bff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+.add-expense-btn {
+    position: absolute;
+    top: 5vh;
+    right: 10vh;
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-expense-btn:hover {
+    background-color: #218838;
+}
+.expense-form-container {
+    background: linear-gradient(135deg, #1e1e1e, #3d3d3d);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    width: 50vh;
+    text-align: center;
+    color: white;
+    margin: auto;
+    margin-top: 5vh;
+}
+
+.expense-form-container input,
+.expense-form-container select,
+.expense-form-container textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.expense-form-container button {
+    margin-top: 10px;
+    background: #007bff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.expense-form-container button:hover {
+    background: #0056b3;
+}
+.delete-btn {
+    background: #ff4d4d;
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #cc0000;
+}
+/* === TOTAL BALANCE CONTAINER (GLASSMORPHIC CARD) === */
+.total-balance-container {
+    background: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Glass effect */
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    width: 85%;
+    max-width: 450px;
+    margin: 2rem auto;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* === INPUT FIELD === */
+.total-balance-container input {
+    width: 90%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    text-align: center;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Input Field Hover/Focus */
+.total-balance-container input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
+
+/* === BUTTON STYLING === */
+.total-balance-container button {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b); /* Red Gradient */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+/* Button Hover Effect */
+.total-balance-container button:hover {
+    background: linear-gradient(135deg, #ff4b2b, #ff416c);
+    transform: scale(1.05);
+}
+
+/* === TOTAL BALANCE DISPLAY (NEON EFFECT) === */
+.total-balance-display {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 255, 135, 0.2);
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 255, 135, 0.7); /* Neon glow */
+    text-align: center;
+    margin-top: 1rem;
+    width: 85%;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Add to your style.css */
+
+/* General styling for the form container */
+.expense-form-container {
+    max-width: 500px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Styling for form heading */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form button styling */
+.btn-primary {
+    width: 100%;
+}
+
+/* Styling for form elements (input fields, text areas, selects) */
+.form-control {
+    border-radius: 5px;
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Invalid feedback styling */
+.invalid-feedback {
+    font-size: 0.875rem;
+    color: #dc3545;
+}
+
+/* Layout adjustments for the footer or other content */
+.footer-text {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.closebtn{
+    color: white !important;
+}
